@@ -110,6 +110,39 @@ export class POIManager {
                     setTimeout(() => {
                         this.map.getMap().closePopup(popup);
                     }, 3000);
+
+                    // Schedule coin regeneration
+                    setTimeout(() => {
+                        // Create new marker for the regenerated coin
+                        const newMarker = L.marker([coinData.lat, coinData.lon], { 
+                            icon: this.map.getGoldCoinIcon() 
+                        }).addTo(this.map.getMap());
+                        
+                        // Add hover effect to new marker
+                        newMarker.bindPopup(marker.getPopup().getContent());
+                        newMarker.on('mouseover', () => newMarker.openPopup());
+                        newMarker.on('mouseout', () => newMarker.closePopup());
+                        
+                        // Update coins map with new marker
+                        this.coins.delete(marker);
+                        this.coins.set(newMarker, {
+                            lat: coinData.lat,
+                            lon: coinData.lon,
+                            collected: false,
+                            id: coinData.id
+                        });
+
+                        // Show respawn message
+                        const respawnPopup = L.popup()
+                            .setLatLng([coinData.lat, coinData.lon])
+                            .setContent('Coin respawned!')
+                            .openOn(this.map.getMap());
+
+                        // Remove respawn popup after 2 seconds
+                        setTimeout(() => {
+                            this.map.getMap().closePopup(respawnPopup);
+                        }, 2000);
+                    }, 60000); // 60 seconds
                 }
             }
         });
