@@ -1,6 +1,38 @@
 export class Shop {
     constructor(stats) {
         this.stats = stats;
+        this.initializeShop();
+    }
+
+    initializeShop() {
+        // Get DOM elements
+        const shopButton = document.getElementById('shop-button');
+        const shopOverlay = document.getElementById('shop-overlay');
+        const shop = document.getElementById('shop');
+
+        // Add click event to shop button
+        shopButton.addEventListener('click', () => this.toggleShop());
+
+        // Close shop when clicking overlay
+        shopOverlay.addEventListener('click', () => this.toggleShop());
+
+        // Initialize shop state
+        this.isShopOpen = false;
+    }
+
+    toggleShop() {
+        const shopOverlay = document.getElementById('shop-overlay');
+        const shop = document.getElementById('shop');
+
+        this.isShopOpen = !this.isShopOpen;
+        
+        if (this.isShopOpen) {
+            shopOverlay.style.display = 'block';
+            shop.style.display = 'block';
+        } else {
+            shopOverlay.style.display = 'none';
+            shop.style.display = 'none';
+        }
     }
 
     buyFood(foodType, cost, hungerRestore) {
