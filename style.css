@@ -5,22 +5,24 @@ body {
   display: flex;
   justify-content: center; /* Centers the content horizontally */
   align-items: center; /* Centers the content vertically */
-  height: 100vh; /* Makes sure the body takes up the full height of the viewport */
+  min-height: 100vh; /* Makes sure the body takes up at least the full height of the viewport */
   width: 100vw; /* Makes sure the body takes up the full width of the viewport */
-  overflow: hidden; /* Prevents the page from scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  overflow-y: auto; /* Allows vertical scrolling when needed */
 }
 
 #game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center; /* Centers text within the container */
   width: 100%;
   max-width: 800px; /* Maximum width for larger screens */
-  height: 100%;
+  min-height: 100vh;
   padding: 25px; /* Adds a 25px margin around the container */
   box-sizing: border-box; /* Includes padding in the container's width and height */
+  gap: 20px; /* Adds spacing between child elements */
 }
 
 .ui-bar {
@@ -76,6 +78,10 @@ body {
   height: 600px; /* Fixed height */
   background: #222; /* optional background color */
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #map-container {
@@ -109,9 +115,10 @@ body {
 /* Mobile responsiveness for smaller devices */
 @media (max-width: 600px) {
   #game-container {
-    padding: 25px; /* Adds padding on mobile */
+    padding: 15px; /* Reduced padding on mobile */
     width: 100%; /* Full width on smaller screens */
     height: auto; /* Allow height to adjust on small screens */
+    gap: 15px; /* Smaller gap on mobile */
   }
 
   #phaser-game {
@@ -122,6 +129,21 @@ body {
   #map-container {
     width: 100%;
     height: 400px; /* Adjust height for smaller screens */
+  }
+  
+  #shop {
+    padding: 15px;
+    width: 100%;
+  }
+  
+  .shop-item {
+    flex-direction: column;
+    padding: 8px;
+  }
+  
+  .shop-item-img {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -152,12 +174,13 @@ body {
 #shop {
   width: 100%;
   max-width: 800px;
-  margin-top: 20px;
   padding: 20px;
   background-color: #333;
   color: #fff;
   border-radius: 8px;
   text-align: center;
+  box-sizing: border-box;
+  order: 3; /* Ensures shop appears after map */
 }
 
 #shop h3 {
@@ -173,6 +196,7 @@ body {
   background-color: #444;
   padding: 10px;
   border-radius: 8px;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
 .shop-item-img {
