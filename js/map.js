@@ -3,13 +3,14 @@ export class GameMap {
         this.map = null;
         this.marker = null;
         this.goldCoinIcon = null;
+        this.playerIcon = null;
     }
 
     async initialize(lat, lng) {
         // Initialize the map
         this.map = L.map('map', {
             zoomControl: false,
-            attributionControl: true,
+            attributionControl: false,
             dragging: true,
             scrollWheelZoom: true,
             doubleClickZoom: true,
@@ -24,8 +25,16 @@ export class GameMap {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(this.map);
 
-        // Add player marker
-        this.marker = L.marker([lat, lng]).addTo(this.map);
+        // Setup player icon
+        this.playerIcon = L.icon({
+            iconUrl: 'asset/bear.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+
+        // Add player marker with custom icon
+        this.marker = L.marker([lat, lng], { icon: this.playerIcon }).addTo(this.map);
         this.marker.bindPopup("You are here!").openPopup();
 
         // Setup gold coin icon
