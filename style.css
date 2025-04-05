@@ -124,3 +124,27 @@ body {
     height: 400px; /* Adjust height for smaller screens */
   }
 }
+
+/* Styles for the title image to make it responsive */
+#title-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%; /* Image will scale based on its container's width */
+  height: auto;    /* Maintain aspect ratio */
+}
+
+/* Media Queries for different screen sizes */
+@media (max-width: 768px) {
+  /* Smaller devices like tablets or small screens */
+  #title-image {
+    max-width: 80%; /* Limit the width on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mobile devices */
+  #title-image {
+    max-width: 70%; /* Further limit the width on mobile devices */
+  }
+}
+
