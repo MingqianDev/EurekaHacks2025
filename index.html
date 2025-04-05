@@ -61,5 +61,48 @@
   <!-- Your game logic -->
   <script type="module" src="js/main.js"></script>
 </body>
+<!-- Shop Section -->
+<div id="shop">
+  <h3>Food & Healing Shop</h3>
+  
+  <!-- Food Items -->
+  <div class="shop-item" id="apple">
+    <img src="asset/apple.png" alt="Apple" class="shop-item-img">
+    <div class="shop-item-info">
+      <p>Apple - $5</p>
+      <button onclick="buyFood('apple', 5, 10)">Buy Apple</button>
+    </div>
+  </div>
+  <div class="shop-item" id="bread">
+    <img src="asset/bread.png" alt="Bread" class="shop-item-img">
+    <div class="shop-item-info">
+      <p>Bread - $10</p>
+      <button onclick="buyFood('bread', 10, 20)">Buy Bread</button>
+    </div>
+  </div>
+  <div class="shop-item" id="steak">
+    <img src="asset/steak.png" alt="Steak" class="shop-item-img">
+    <div class="shop-item-info">
+      <p>Steak - $20</p>
+      <button onclick="buyFood('steak', 20, 50)">Buy Steak</button>
+    </div>
+  </div>
+
+  <!-- Healing Items -->
+  <div class="shop-item" id="bandage">
+    <img src="asset/bandage.png" alt="Bandage" class="shop-item-img">
+    <div class="shop-item-info">
+      <p>Bandage - $10</p>
+      <button onclick="buyHealingItem('bandage', 10, 20)">Buy Bandage</button>
+    </div>
+  </div>
+  <div class="shop-item" id="medkit">
+    <img src="asset/medkit.png" alt="Medkit" class="shop-item-img">
+    <div class="shop-item-info">
+      <p>Medkit - $50</p>
+      <button onclick="buyHealingItem('medkit', 50, 100)">Buy Medkit</button>
+    </div>
+  </div>
+</div>
 
 </html>
