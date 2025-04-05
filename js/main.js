@@ -1,12 +1,25 @@
 import { GameMap } from './map.js';
 import { POIManager } from './poi.js';
 import { Stats } from './stats.js';
+import { Shop } from './shop.js';
 
 window.addEventListener("load", async () => {
     if (navigator.geolocation) {
-        const gameMap = new GameMap();
+        // Initialize game components
         const stats = new Stats();
-        
+        const gameMap = new GameMap();
+        const poiManager = new POIManager(gameMap, stats);
+        const shop = new Shop(stats);
+
+        // Make shop functions globally available
+        window.buyFood = (foodType, cost, hungerRestore) => {
+            shop.buyFood(foodType, cost, hungerRestore);
+        };
+
+        window.buyHealingItem = (itemType, cost, healthRestore) => {
+            shop.buyHealingItem(itemType, cost, healthRestore);
+        };
+
         navigator.geolocation.getCurrentPosition(async (position) => {
             const userLat = position.coords.latitude;
             const userLng = position.coords.longitude;
@@ -15,7 +28,6 @@ window.addEventListener("load", async () => {
             await gameMap.initialize(userLat, userLng);
             
             // Initialize POI manager
-            const poiManager = new POIManager(gameMap, stats);
             await poiManager.fetchPOIs(userLat, userLng);
 
             // Watch position changes

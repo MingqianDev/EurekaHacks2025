@@ -1,7 +1,7 @@
 // Stats management
 export class Stats {
     constructor() {
-        this.totalMoney = 0;
+        this.totalMoney = 1000;
         this.health = 80;
         this.hunger = 80;
         
