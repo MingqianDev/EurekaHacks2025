@@ -76,9 +76,14 @@
                     node["amenity"="park"](around:1000,${userLat},${userLng});
                     node["amenity"="library"](around:1000,${userLat},${userLng});
                     node["amenity"="recreation_ground"](around:1000,${userLat},${userLng});
+                    node["amenity"="restaurant"](around:1000,${userLat},${userLng});
+                    node["amenity"="shop"](around:1000,${userLat},${userLng});
+                    node["amenity"="pub"](around:1000,${userLat},${userLng});
+                    node["amenity"="bank"](around:1000,${userLat},${userLng});
                   );
                   out body;
                 `;
+
                 
                 // Fetch the nearby POIs using the Overpass API
                 fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`)
