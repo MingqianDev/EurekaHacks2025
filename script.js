@@ -9,12 +9,12 @@ window.addEventListener("load", () => {
         // Initialize the map at user's location
         const map = L.map('map', {
           zoomControl: false,
-          attributionControl: false,
+          attributionControl: true,
           dragging: true,
-          scrollWheelZoom: false,
-          doubleClickZoom: false,
-          boxZoom: false,
-          keyboard: false,
+          scrollWheelZoom: true,
+          doubleClickZoom: true,
+          boxZoom: true,
+          keyboard: true,
           tap: true,
           touchZoom: true,
         }).setView([userLat, userLng], 16);
@@ -79,6 +79,46 @@ window.addEventListener("load", () => {
         // Initial POI fetch
         fetchPOIs(userLat, userLng);
 
+        // Initialize stats
+        let totalMoney = 0;
+        let health = 100;
+        let hunger = 100;
+
+        const moneyCounter = document.getElementById('money-counter');
+        const moneyBar = document.getElementById('money-bar');
+        const healthCounter = document.getElementById('health-counter');
+        const healthBar = document.getElementById('health-bar');
+        const hungerCounter = document.getElementById('hunger-counter');
+        const hungerBar = document.getElementById('hunger-bar');
+
+        // Function to update money display
+        function updateMoneyDisplay(amount) {
+          totalMoney = amount;
+          moneyCounter.textContent = `$${totalMoney}`;
+          // Update money bar (assuming max is 1000)
+          const percentage = Math.min((totalMoney / 1000) * 100, 100);
+          moneyBar.style.width = `${percentage}%`;
+        }
+
+        // Function to update health display
+        function updateHealthDisplay(amount) {
+          health = Math.max(0, Math.min(100, amount));
+          healthCounter.textContent = `${health}/100`;
+          healthBar.style.width = `${health}%`;
+        }
+
+        // Function to update hunger display
+        function updateHungerDisplay(amount) {
+          hunger = Math.max(0, Math.min(100, amount));
+          hungerCounter.textContent = `${hunger}/100`;
+          hungerBar.style.width = `${hunger}%`;
+        }
+
+        // Initialize displays
+        updateHealthDisplay(100);
+        updateHungerDisplay(100);
+        updateMoneyDisplay(0);
+
         // Watch position changes
         const watchId = navigator.geolocation.watchPosition(
           (newPosition) => {
@@ -95,6 +135,10 @@ window.addEventListener("load", () => {
             const distance = L.latLng([userLat, userLng]).distanceTo([newLat, newLng]);
             if (distance > 100) { // Update POIs if moved more than 100 meters
               fetchPOIs(newLat, newLng);
+              // Update stats when moving (for testing)
+              updateMoneyDisplay(totalMoney + 50);
+              updateHealthDisplay(health - 5);
+              updateHungerDisplay(hunger - 10);
             }
           },
           (error) => {
