@@ -44,3 +44,20 @@ body {
   border: 2px solid #111;
   border-radius: 4px;
 }
+#phaser-game {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  background: #222; /* optional background color */
+  overflow: hidden;
+}
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 400px;
+  z-index: 0;
+  pointer-events: none; /* So Phaser gets the mouse/touch input */
+}
