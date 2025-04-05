@@ -3,7 +3,7 @@ export class POIManager {
         this.map = map;
         this.stats = stats;
         this.coins = new Map(); // Store coin markers with their coordinates
-        this.collectionRadius = 150; // 150 meters collection radius
+        this.collectionRadius = 1500; // 150 meters collection radius
         this.loadCollectedCoins(); // Load previously collected coins
     }
 
@@ -27,9 +27,9 @@ export class POIManager {
 
         const collectedTime = this.collectedCoins.get(coinId);
         const now = new Date().getTime();
-        const oneDayInMs = 24 * 60 * 60 * 1000;
+        const sixtySecondsInMs = 60 * 1000;
 
-        return (now - collectedTime) >= oneDayInMs;
+        return (now - collectedTime) >= sixtySecondsInMs;
     }
 
     async fetchPOIs(lat, lng) {
@@ -97,13 +97,13 @@ export class POIManager {
                     
                     // Calculate time until coin respawns
                     const respawnTime = new Date();
-                    respawnTime.setHours(respawnTime.getHours() + 24);
+                    respawnTime.setSeconds(respawnTime.getSeconds() + 60);
                     const respawnTimeStr = respawnTime.toLocaleTimeString();
                     
                     // Show collection message with respawn time
                     const popup = L.popup()
                         .setLatLng([coinData.lat, coinData.lon])
-                        .setContent(`Coin collected! +$10<br>Respawns at ${respawnTimeStr} tomorrow`)
+                        .setContent(`Coin collected! +$10<br>Respawns at ${respawnTimeStr}`)
                         .openOn(this.map.getMap());
                     
                     // Remove popup after 3 seconds
