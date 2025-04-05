@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lone Wildfire Warden</title>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div id="game-container">
+    <div class="ui-bar">
+      <div class="bar-label">Health</div>
+      <div class="bar"><div class="bar-fill" id="health-bar" style="background: red; width: 60%;"></div></div>
+    </div>
+    <div class="ui-bar">
+      <div class="bar-label">Hunger</div>
+      <div class="bar"><div class="bar-fill" id="hunger-bar" style="background: green; width: 90%;"></div></div>
+    </div>
+    <div id="phaser-game"></div>
+    <div id="inventory">
+      <div class="slot" style="background-image: url('shovel.png'); background-size: cover;"></div>
+      <div class="slot" style="background-image: url('extinguisher.png'); background-size: cover;"></div>
+      <div class="slot"></div>
+      <div class="slot"></div>
+      <div class="slot"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
