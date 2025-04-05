@@ -15,7 +15,7 @@ window.addEventListener("load", async () => {
             await gameMap.initialize(userLat, userLng);
             
             // Initialize POI manager
-            const poiManager = new POIManager(gameMap);
+            const poiManager = new POIManager(gameMap, stats);
             await poiManager.fetchPOIs(userLat, userLng);
 
             // Watch position changes
@@ -27,13 +27,16 @@ window.addEventListener("load", async () => {
                     // Update player position
                     gameMap.updatePlayerPosition(newLat, newLng);
 
+                    // Check for coin collection
+                    poiManager.checkCoinCollection(newLat, newLng);
+
                     // Check distance and update POIs/stats
                     const distance = L.latLng([userLat, userLng])
                         .distanceTo([newLat, newLng]);
                     
-                    if (distance > 100) {
+                    if (distance > 100) { // Update POIs if moved more than 100 meters
                         poiManager.fetchPOIs(newLat, newLng);
-                        stats.updateMoneyDisplay(stats.totalMoney + 50);
+                        // Update health and hunger
                         stats.updateHealthDisplay(stats.health - 5);
                         stats.updateHungerDisplay(stats.hunger - 10);
                     }
