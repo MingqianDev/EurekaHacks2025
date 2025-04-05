@@ -36,9 +36,6 @@ window.addEventListener("load", async () => {
                     
                     if (distance > 100) { // Update POIs if moved more than 100 meters
                         poiManager.fetchPOIs(newLat, newLng);
-                        // Update health and hunger
-                        stats.updateHealthDisplay(stats.health - 5);
-                        stats.updateHungerDisplay(stats.hunger - 10);
                     }
                 },
                 (error) => {
