@@ -10,13 +10,13 @@ window.addEventListener("load", () => {
         const map = L.map('map', {
           zoomControl: false,
           attributionControl: false,
-          dragging: false,
+          dragging: true,
           scrollWheelZoom: false,
           doubleClickZoom: false,
           boxZoom: false,
           keyboard: false,
-          tap: false,
-          touchZoom: false,
+          tap: true,
+          touchZoom: true,
         }).setView([userLat, userLng], 16);
 
         // Tile layer
