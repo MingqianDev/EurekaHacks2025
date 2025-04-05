@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lone Wildfire Warden</title>
+  <title>Thicket</title>
 
   <!-- Phaser -->
   <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
@@ -30,47 +30,7 @@
 
     <!-- Phaser game + map container -->
     <div id="phaser-game">
-      <script>
-        // Wait for page to load before running geolocation
-        window.addEventListener("load", () => {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const userLat = position.coords.latitude;
-                const userLng = position.coords.longitude;
-      
-                // Initialize the map at user's location
-                const map = L.map('map', {
-                  zoomControl: false,
-                  attributionControl: false,
-                  dragging: false,
-                  scrollWheelZoom: false,
-                  doubleClickZoom: false,
-                  boxZoom: false,
-                  keyboard: false,
-                  tap: false,
-                  touchZoom: false,
-                }).setView([userLat, userLng], 16);
-      
-                // Tile layer
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                  attribution: '&copy; OpenStreetMap contributors'
-                }).addTo(map);
-      
-                // Player marker
-                const marker = L.marker([userLat, userLng]).addTo(map);
-                marker.bindPopup("You are here!").openPopup();
-              },
-              (error) => {
-                console.error("Geolocation failed:", error);
-                alert("Location access denied. Map cannot show your position.");
-              }
-            );
-          } else {
-            alert("Geolocation is not supported by your browser.");
-          }
-        });
-      </script>
+
       <div id="map"></div>
     </div>
 
