@@ -2,8 +2,8 @@
 export class Stats {
     constructor() {
         this.totalMoney = 0;
-        this.health = 100;
-        this.hunger = 100;
+        this.health = 80;
+        this.hunger = 80;
         
         // Get DOM elements
         this.moneyCounter = document.getElementById('money-counter');
@@ -14,9 +14,9 @@ export class Stats {
         this.hungerBar = document.getElementById('hunger-bar');
         
         // Initialize displays
-        this.updateHealthDisplay(100);
-        this.updateHungerDisplay(100);
-        this.updateMoneyDisplay(0);
+        this.updateHealthDisplay(this.health);
+        this.updateHungerDisplay(this.hunger);
+        this.updateMoneyDisplay(this.totalMoney);
     }
 
     updateMoneyDisplay(amount) {
