@@ -1,8 +1,8 @@
 // Stats management
 export class Stats {
     constructor() {
-        this.totalMoney = 1000;
-        this.health = 80;
+        this.totalMoney = 0;
+        this.health = 100;
         this.hunger = 80;
         
         // Get DOM elements

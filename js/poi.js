@@ -3,7 +3,7 @@ export class POIManager {
         this.map = map;
         this.stats = stats;
         this.coins = new Map(); // Store coin markers with their coordinates
-        this.collectionRadius = 1500; // 150 meters collection radius
+        this.collectionRadius = 150; // 150 meters collection radius
         this.loadCollectedCoins(); // Load previously collected coins
     }
 
