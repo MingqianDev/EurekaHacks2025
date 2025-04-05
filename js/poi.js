@@ -27,9 +27,9 @@ export class POIManager {
 
         const collectedTime = this.collectedCoins.get(coinId);
         const now = new Date().getTime();
-        const sixtySecondsInMs = 60 * 1000;
+        const threeHoursInMs = 3 * 60 * 60 * 1000;
 
-        return (now - collectedTime) >= sixtySecondsInMs;
+        return (now - collectedTime) >= threeHoursInMs;
     }
 
     async fetchPOIs(lat, lng) {
@@ -97,7 +97,7 @@ export class POIManager {
                     
                     // Calculate time until coin respawns
                     const respawnTime = new Date();
-                    respawnTime.setSeconds(respawnTime.getSeconds() + 60);
+                    respawnTime.setHours(respawnTime.getHours() + 3);
                     const respawnTimeStr = respawnTime.toLocaleTimeString();
                     
                     // Show collection message with respawn time
@@ -142,7 +142,7 @@ export class POIManager {
                         setTimeout(() => {
                             this.map.getMap().closePopup(respawnPopup);
                         }, 2000);
-                    }, 60000); // 60 seconds
+                    }, 3 * 60 * 60 * 1000); // 3 hours in milliseconds
                 }
             }
         });
