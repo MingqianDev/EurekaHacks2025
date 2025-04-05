@@ -14,42 +14,6 @@
 
   <!-- Your CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
-    #game-container {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .ui-bar, #inventory {
-      position: relative;
-      z-index: 10;
-    }
-
-    #phaser-game {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-    }
-
-    #map {
-      position: relative;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      z-index: 0; /* Behind Phaser canvas */
-      pointer-events: none; /* Prevents blocking Phaser interactions */
-    }
-  </style>
 </head>
 <body>
   <div id="game-container">
